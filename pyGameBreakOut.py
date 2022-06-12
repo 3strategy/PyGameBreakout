@@ -17,23 +17,28 @@ def main():
 
     pygame.display.set_caption('Blobby')
 
-    background = pygame.image.load('data\\beachback.jpg')
+    background = pygame.image.load('data\\BlobbyBack.jpg')
     background = pygame.transform.scale(background, (screenx, screeny))
     background = background.convert()
 
     # Initialise players, net, and ball
     players = (Player("left"), Player("right"))
-    net = Net()
+    net = Brick(-350, 200)
+    net1 = Brick(-200, 200)
+    net2 = Brick(-50, 200)
+    net3 = Brick(100, 200)
+    net4 = Brick(250, 200)
+    net5 = Brick(400, 200)
     boundry = Boundry()
     pointer = Pointer()
-    ball = Ball(players, net, pointer, boundry)
+    ball = Ball(players, [net,net1,net2,net3,net4,net5], pointer, boundry)
     Player.ball = ball  # give player a static reference to ball.
 
     # Initialise sprites' groups
     playersprites = pygame.sprite.RenderPlain(players)
     ballsprites = pygame.sprite.RenderPlain(ball, pointer)
 
-    othersprites = pygame.sprite.RenderPlain(boundry, net)
+    othersprites = pygame.sprite.RenderPlain(boundry, net,net1,net2,net3,net4,net5)
 
     # Display some text
     font = pygame.font.Font(None, 36)
@@ -77,7 +82,7 @@ def main():
         playersprites.update()  # it matters if you update the player before or after the ball.
         ballsprites.update()  # calls the update method on sprite
 
-        # othersprites.draw(screen)
+        othersprites.draw(screen)
         playersprites.draw(screen)
         ballsprites.draw(screen)  # blits every sprite to the screen.
 

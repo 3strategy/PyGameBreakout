@@ -9,15 +9,15 @@ except ImportError as err:
 class Ball(SharedSprite):
     """A ball that will move across the screen"""
 
-    def __init__(self, players, net, pointer, boundry):
-        SharedSprite.__init__(self, 'VolleyGreenBig.png', 0.555)  # if using unusual size - use the scale to make it ok.
+    def __init__(self, players, bricks, pointer, boundry):
+        SharedSprite.__init__(self, 'VolleyGreenBig.png', 0.20)  # if using unusual size - use the scale to make it ok.
         self.hit = 0
         self.players: tuple[
             Player] = players  # type hinting is important. it helps seeing available methods in the class
         self.lastPlayer = False
         self.point_started = False
         self.point_scored = False
-        self.net: Net = net  # hinting.
+        self.bricks = bricks  # hinting.
         self.boundry: Boundry = boundry
         self.pointer: Pointer = pointer
         self.startY = 320 * basescale
@@ -73,13 +73,14 @@ class Ball(SharedSprite):
                     self.reinit()
                     return
 
-        # Net collision detection בדיקת התנגשות ברשת
-        if bestoverlap := self.bestoverlap(self.net):  # testoverlap(self.net, self):
+        # Brick collision detection בדיקת התנגשות ברשת
+        for brick in self.bricks:
+            if bestoverlap := self.bestoverlap(brick):  # testoverlap(self.net, self):
 
-            temp_dx = self.dX
-            self.process_impact(self.boundry, bestoverlap)
-            if self.dX * temp_dx < 0:  # means ball bounced back
-                self.score(Fault.Net)
+                temp_dx = self.dX
+                self.process_impact(self.boundry, bestoverlap)
+                if self.dX * temp_dx < 0:  # means ball bounced back
+                    self.score(Fault.Net)
 
         # Player Collision testing בדיקת פגיעת שחקן בכדור
         for ordinal in range(2):

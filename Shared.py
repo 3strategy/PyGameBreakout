@@ -145,10 +145,10 @@ class SharedSprite(pygame.sprite.Sprite):
         return angle_ofdxdy((self.dX, self.dY))
 
 
-class Net(SharedSprite):
-    def __init__(self):
-        SharedSprite.__init__(self, 'Net1.png')
-        self.rect.midbottom = (self.area.midbottom[0], self.area.midbottom[1] + 0)
+class Brick(SharedSprite):
+    def __init__(self,x,y):
+        SharedSprite.__init__(self, 'Net1.png',3)
+        self.rect.midtop = (self.area.midtop[0] + x*basescale, self.area.midtop[1] + y*basescale)
 
     @property
     def weight(self):
