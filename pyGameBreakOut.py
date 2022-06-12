@@ -31,14 +31,16 @@ def main():
     net5 = Brick(400, 200)
     boundry = Boundry()
     pointer = Pointer()
-    ball = Ball(players, [net,net1,net2,net3,net4,net5], pointer, boundry)
+    bricksprites = pygame.sprite.RenderPlain(net, net1, net2, net3, net4, net5)
+    #bricksprites.remove(net1)
+
+    ball = Ball(players, bricksprites, pointer, boundry)
     Player.ball = ball  # give player a static reference to ball.
 
     # Initialise sprites' groups
     playersprites = pygame.sprite.RenderPlain(players)
     ballsprites = pygame.sprite.RenderPlain(ball, pointer)
 
-    othersprites = pygame.sprite.RenderPlain(boundry, net,net1,net2,net3,net4,net5)
 
     # Display some text
     font = pygame.font.Font(None, 36)
@@ -78,11 +80,11 @@ def main():
         screen.blit(background, (0, 0))  # this acts as a clear screen (try without and see how everything smears)
         screen.blit(text, textpos)  # if we blit to background we are smearing.
 
-        othersprites.update()
+        bricksprites.update()
         playersprites.update()  # it matters if you update the player before or after the ball.
         ballsprites.update()  # calls the update method on sprite
 
-        othersprites.draw(screen)
+        bricksprites.draw(screen)
         playersprites.draw(screen)
         ballsprites.draw(screen)  # blits every sprite to the screen.
 

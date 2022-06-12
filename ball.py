@@ -9,7 +9,7 @@ except ImportError as err:
 class Ball(SharedSprite):
     """A ball that will move across the screen"""
 
-    def __init__(self, players, bricks, pointer, boundry):
+    def __init__(self, players, bricksprites, pointer, boundry):
         SharedSprite.__init__(self, 'VolleyGreenBig.png', 0.20)  # if using unusual size - use the scale to make it ok.
         self.hit = 0
         self.players: tuple[
@@ -17,7 +17,7 @@ class Ball(SharedSprite):
         self.lastPlayer = False
         self.point_started = False
         self.point_scored = False
-        self.bricks = bricks  # hinting.
+        self.bricksprites = bricksprites  # hinting.
         self.boundry: Boundry = boundry
         self.pointer: Pointer = pointer
         self.startY = 320 * basescale
@@ -74,9 +74,9 @@ class Ball(SharedSprite):
                     return
 
         # Brick collision detection בדיקת התנגשות ברשת
-        for brick in self.bricks:
+        for brick in self.bricksprites:
             if bestoverlap := self.bestoverlap(brick):  # testoverlap(self.net, self):
-
+                self.bricksprites.remove(brick)
                 temp_dx = self.dX
                 self.process_impact(self.boundry, bestoverlap)
                 if self.dX * temp_dx < 0:  # means ball bounced back
