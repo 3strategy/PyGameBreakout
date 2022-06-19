@@ -82,12 +82,12 @@ class Player(SharedSprite):
     def update(self):
         SharedSprite.update(self)
 
-        if self.dX != 0:  # Player horisontal position checks:
+        # if self.dX != 0:  # Player horisontal position checks:
             # avoid approaching the net   and avoid exiting the field
-            if not Player.netApproach < abs(
-                    self.area.centerx - self.newpos.centerx) < self.area.centerx + Player.sideApproach:
-                self.newpos.centerx -= self.dX
-                self.dX = 0
+            # if not Player.netApproach < abs(
+            #         self.area.centerx - self.newpos.centerx) < self.area.centerx + Player.sideApproach:
+            #     self.newpos.centerx -= self.dX
+            #     self.dX = 0
 
         if self.state == State.MoveUp:
             self.dY += 0.6 * self.gravity

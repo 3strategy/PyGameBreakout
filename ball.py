@@ -10,7 +10,7 @@ class Ball(SharedSprite):
     """A ball that will move across the screen"""
 
     def __init__(self, players, bricksprites, pointer, boundry):
-        SharedSprite.__init__(self, 'VolleyGreenBig.png', 0.20)  # if using unusual size - use the scale to make it ok.
+        SharedSprite.__init__(self, 'VolleyGreenBig.png', 0.25)  # if using unusual size - use the scale to make it ok.
         self.hit = 0
         self.players: tuple[
             Player] = players  # type hinting is important. it helps seeing available methods in the class
@@ -59,8 +59,8 @@ class Ball(SharedSprite):
         self.pointer.rect.centerx = newpos.centerx
         # you can do the above pointing but you cannot do:
         # dY,dX = self.dY, self.dX  # WHY?
-        if self.point_started and self.dY < 14 * basescale:
-            self.dY += self.gravity
+        # if self.point_started and self.dY < 14 * basescale:
+        #     self.dY += self.gravity
 
         # All boundry tests run via Impulse Equations.
         if bestoverlap := self.bestoverlap(self.boundry):

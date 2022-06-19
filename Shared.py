@@ -20,10 +20,10 @@ infoObject = pygame.display.Info()
 screeny = 650  # infoObject.current_h  # 650 #650 is also good.
 screenx = 1250  # infoObject.current_w  # 1250#1580
 basescale = sqrt(screeny * screenx / (650 * 1250))  #
-speed = 27 * basescale
+speed = 20 * basescale
 gravity = 0.56 * basescale
 y_compression = False
-max_ball_speed = 25
+max_ball_speed = 20
 
 
 # [resource handling functions here]
