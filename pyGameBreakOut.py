@@ -1,4 +1,4 @@
-# game class (main)
+  # game class (main)
 try:
     import sys
     import re
@@ -29,9 +29,15 @@ def main():
     net3 = Brick(100, 200)
     net4 = Brick(250, 200)
     net5 = Brick(400, 200)
+    net6 = Brick(-350, 250)
+    net7 = Brick(-200, 250)
+    net8 = Brick(-50, 250)
+    net9 = Brick(100, 250)
+    net10 = Brick(250, 250)
+    net11= Brick(400, 250)
     boundry = Boundry()
     pointer = Pointer()
-    bricksprites = pygame.sprite.RenderPlain(net, net1, net2, net3, net4, net5)
+    bricksprites = pygame.sprite.RenderPlain(net, net1, net2, net3, net4, net5, net6, net7, net8, net9, net10, net11)
     #bricksprites.remove(net1)
 
     ball = Ball(players, bricksprites, pointer, boundry)
