@@ -90,14 +90,14 @@ class Player(SharedSprite):
             #     self.dX = 0
 
         if self.state == State.MoveUp:
-            self.dY += 0.6 * self.gravity
+            self.dY =0 #  += 0.6 * self.gravity
         else:
-            self.dY += self.gravity
+            self.dY =0 #  += self.gravity
 
         if self.newpos.bottom >= self.area.bottom:  # player touches the floor
             self.newpos.bottom = self.area.bottom
             if self.state == State.MoveUp:
-                self.dY = -self.speed
+                self.dY =0 #= -self.speed
             else:
                 self.dY = 0
             self.canjump = True

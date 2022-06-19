@@ -22,7 +22,7 @@ def main():
     background = background.convert()
 
     # Initialise players, net, and ball
-    players = (Player("left"), Player("right"))
+    players = [Player("left")]
     net_1 = Brick(-500, 200)
     net = Brick(-350, 200)
     net1 = Brick(-200, 200)
@@ -74,14 +74,14 @@ def main():
             for player in players:
                 player.move(event)
 
-        p0, p1 = players[0], players[1]
-        info = f'{p0.score}   :   {p1.score}'
+        p0 = players[0]
+        info = f'{p0.score} '
         if p0.fault != Fault.Ok:
             fl = re.search(r'((\w*)\.(\w*))', f'{p0.fault}').group(3)
             info = f'{fl} {info}'
-        elif p1.fault != Fault.Ok:
-            fl = re.search(r'((\w*)\.(\w*))', str(p1.fault)).group(3)
-            info = f'{info}  {fl}'
+        #elif p1.fault != Fault.Ok:
+        #    fl = re.search(r'((\w*)\.(\w*))', str(p1.fault)).group(3)
+        #    info = f'{info}  {fl}'
         # info = f'{p0.state} {info}  {p1.state} dX:{p1.dX:.1f} dY:{p1.dY:.1f}'
         # info = f'{info} Ball dX:{ball.dX:.1f} dY:{ball.dY:.1f}'
         # note the : after which comes the formatting (here .1f for 1 decimal point)

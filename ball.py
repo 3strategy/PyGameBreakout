@@ -83,7 +83,7 @@ class Ball(SharedSprite):
                     self.score(Fault.Net)
 
         # Player Collision testing בדיקת פגיעת שחקן בכדור
-        for ordinal in range(2):
+        for ordinal in range(1):
             player = self.players[ordinal]
             # overlap gets the result of the collision test and then an 'if' checks overlap
             if bestoverlap := self.bestoverlap(player):
