@@ -17,9 +17,9 @@ pygame.init()
 infoObject = pygame.display.Info()
 # pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
 
-screeny = 650  # infoObject.current_h  # 650 #650 is also good.
+screeny = 750  # infoObject.current_h  # 650 #650 is also good.
 screenx = 1250  # infoObject.current_w  # 1250#1580
-basescale = sqrt(screeny * screenx / (650 * 1250))  #
+basescale = sqrt(screeny * screenx / (750 * 1250))  #
 speed = 20 * basescale
 gravity = 0.56 * basescale
 y_compression = False
