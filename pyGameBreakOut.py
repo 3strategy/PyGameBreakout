@@ -75,7 +75,7 @@ def main():
                 player.move(event)
 
         p0 = players[0]
-        info = f'{p0.score} '
+        info = f'{p0.life} '
         if p0.fault != Fault.Ok:
             fl = re.search(r'((\w*)\.(\w*))', f'{p0.fault}').group(3)
             info = f'{fl} {info}'

@@ -38,20 +38,28 @@ class Ball(SharedSprite):
 
         SharedSprite.reinit(self)
 
+        self.dY = 10
+        self.dX = -10
+
     def score(self, fault):
-        ordinal = self.area.centerx > self.rect.centerx
-        if not self.point_scored:  # prevent double scoring
-            if fault is Fault.Net and self.players[not ordinal].num_shots == 0:
-                return  # ignore net fault if player has not touched the ball yet.
-            self.players[not ordinal].fault = fault
-            if ordinal == self.lastPlayer:  # ball holder lost the point - switch ball.
-                self.lastPlayer = not self.lastPlayer
-            else:
-                p: Player = self.players[ordinal]
-                p.score += 1
-                if p.score > 14 and p.score - self.players[not ordinal].score > 1:
-                    p.fault = Fault.Won
-            self.point_scored = True
+        p: Player = self.players[0]
+        p.life-=1
+        if p.life==0: #stop the game
+            p.fault = Fault.GameOver
+        return
+        # ordinal = self.area.centerx > self.rect.centerx
+        # if not self.point_scored:  # prevent double scoring
+        #     if fault is Fault.Net and self.players[not ordinal].num_shots == 0:
+        #         return  # ignore net fault if player has not touched the ball yet.
+        #     self.players[not ordinal].fault = fault
+        #     if ordinal == self.lastPlayer:  # ball holder lost the point - switch ball.
+        #         self.lastPlayer = not self.lastPlayer
+        #     else:
+        #         p: Player = self.players[ordinal]
+        #         p.score += 1
+        #         if p.score > 14 and p.score - self.players[not ordinal].score > 1:
+        #             p.fault = Fault.Won
+        #     self.point_scored = True
 
     def update(self, *args):
         SharedSprite.update(self)
@@ -64,6 +72,12 @@ class Ball(SharedSprite):
 
         # All boundry tests run via Impulse Equations.
         if bestoverlap := self.bestoverlap(self.boundry):
+            # everything (___, 51 or 52, or 53) means the ball hit the boundry floor
+            if bestoverlap[1]>50: #התנגשות רצפה
+                #start new point (בהמשך נקרא לSCORE
+                self.score(Fault.Floor)
+                self.reinit()
+                return
             self.process_impact(self.boundry, bestoverlap)
             if bestoverlap[1] > 75 * basescale:  # means ball touched the floor
                 self.rollback()
@@ -90,7 +104,7 @@ class Ball(SharedSprite):
                 self.process_impact(player, bestoverlap)
 
                 # reset num_shots of the THE OTHER PLAYER
-                self.players[not ordinal].num_shots = 0
+                #self.players[not ordinal].num_shots = 0
                 if not self.point_scored:
                     player.num_shots += 1
                 if player.num_shots > 3:

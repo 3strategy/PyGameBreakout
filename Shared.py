@@ -250,3 +250,4 @@ class Fault(Enum):
     Net = 2
     Touch3 = 3
     Won = 4
+    GameOver = 5

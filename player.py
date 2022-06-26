@@ -22,7 +22,7 @@ class Player(SharedSprite):
         self.canjump = True
         self.num_shots = 0
         self.score = 0
-
+        self.life=4
         if side == "left":
             SharedSprite.__init__(self, 'PlayerBatRed.png', 1.5, True)
             self.sign = 1
