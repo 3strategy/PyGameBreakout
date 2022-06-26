@@ -46,6 +46,9 @@ class Ball(SharedSprite):
         p.life-=1
         if p.life==0: #stop the game
             p.fault = Fault.GameOver
+            pygame.time.delay(3000)
+            p.life = 4
+            p.reinit()
         return
         # ordinal = self.area.centerx > self.rect.centerx
         # if not self.point_scored:  # prevent double scoring

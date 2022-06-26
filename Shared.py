@@ -67,7 +67,7 @@ class SharedSprite(pygame.sprite.Sprite):
         self.dX = 0.0
         self.dY = 0.0
         self.gravity = gravity
-        self.initial_wall_dist = 150 * basescale
+        self.initial_wall_dist = 450 * basescale
         self.boost = False
         self.dY2, self.dY1, self.dY0 = 0.0, 0.0, 0.0  # for debug
         self.old2, self.old1 = self.newpos, self.newpos
