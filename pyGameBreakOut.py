@@ -48,7 +48,7 @@ def main():
     Player.ball = ball  # give player a static reference to ball.
 
     # Initialise sprites' groups
-    playersprites = pygame.sprite.RenderPlain(players)
+    playersprites = pygame.sprite.RenderPlain(players,boundry)
     ballsprites = pygame.sprite.RenderPlain(ball, pointer)
 
 

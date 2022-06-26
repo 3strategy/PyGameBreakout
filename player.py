@@ -15,7 +15,7 @@ class Player(SharedSprite):
     def __init__(self, side):
         self.side = side
         self.speed = speed
-        self.horisontal_speed = speed * 0.3
+        self.horisontal_speed = speed * 0.5
         self.state = State.Still
         self.h_state = State.Still
         self.__fault: Fault = Fault.Ok

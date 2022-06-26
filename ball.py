@@ -38,8 +38,8 @@ class Ball(SharedSprite):
 
         SharedSprite.reinit(self)
 
-        self.dY = 10
-        self.dX = -10
+        self.dY = 8
+        self.dX = -8
 
     def score(self, fault):
         p: Player = self.players[0]
